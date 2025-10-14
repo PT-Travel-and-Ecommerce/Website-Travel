@@ -42,13 +42,13 @@ export async function POST(request: NextRequest) {
       if (file && file.size > 0) {
         const arrayBuffer = await file.arrayBuffer();
         const buffer = Buffer.from(arrayBuffer);
-        const uploadsDir = path.join(process.cwd(), 'public', 'uploads');
+        const uploadsDir = process.env.UPLOADS_DIR || path.join(process.cwd(), 'uploads');
         await fs.mkdir(uploadsDir, { recursive: true });
         const safeName = file.name.replace(/[^a-zA-Z0-9_.-]/g, '_');
         const filename = `${Date.now()}_${safeName}`;
         const outPath = path.join(uploadsDir, filename);
         await fs.writeFile(outPath, buffer);
-        imageUrl = `/uploads/${filename}`;
+        imageUrl = `/api/images/${filename}`;
       } else {
         imageUrl = String(form.get('imageUrl') || '');
       }

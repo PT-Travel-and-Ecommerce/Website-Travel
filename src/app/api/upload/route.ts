@@ -41,8 +41,9 @@ export async function POST(request: NextRequest) {
     const originalName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
     const filename = `${timestamp}-${originalName}`;
 
-    // Ensure uploads directory exists
-    const uploadsDir = join(process.cwd(), 'public', 'uploads');
+    // Use external uploads directory (outside Next.js public folder)
+    // This prevents issues with PM2 where files uploaded after build aren't accessible
+    const uploadsDir = process.env.UPLOADS_DIR || join(process.cwd(), 'uploads');
     if (!existsSync(uploadsDir)) {
       mkdirSync(uploadsDir, { recursive: true });
     }
@@ -51,8 +52,8 @@ export async function POST(request: NextRequest) {
     const filepath = join(uploadsDir, filename);
     await writeFile(filepath, buffer);
 
-    // Return public URL
-    const url = `/uploads/${filename}`;
+    // Return API URL that serves the image
+    const url = `/api/images/${filename}`;
 
     return NextResponse.json({
       success: true,
