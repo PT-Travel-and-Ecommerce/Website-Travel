@@ -7,9 +7,10 @@ export const runtime = 'nodejs';
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const contentType = request.headers.get('content-type') || '';
     let name = '';
     let description = '';
@@ -42,7 +43,7 @@ export async function PUT(
     }
 
     const updatedCity = await prisma.city.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         name,
         description,
@@ -62,11 +63,12 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     await prisma.city.delete({
-      where: { id: params.id },
+      where: { id },
     });
 
     return NextResponse.json({ success: true });
