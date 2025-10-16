@@ -22,11 +22,14 @@ model City {
 model Payment {
   id             String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   flightRouteId  String      @map("flight_route_id") @db.Uuid
+  userId         String?     @map("user_id") @db.Uuid
   userEmail      String      @map("user_email")
   userName       String      @map("user_name")
   status         String      @default("pending")
   amount         Decimal     @default(0) @db.Decimal(15, 2)
+  paymentProof   String?     @map("payment_proof")
   createdAt      DateTime    @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt      DateTime    @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
   flightRoute    FlightRoute @relation(fields: [flightRouteId], references: [id], onDelete: Cascade)
 
   @@map("payments")
