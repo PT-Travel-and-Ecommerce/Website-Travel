@@ -46,6 +46,13 @@ export default function FlightPaymentModal({ isOpen, onClose, flightRoute }: Fli
     accountName: string;
   }>>([]);
   const [whatsappNumber, setWhatsappNumber] = useState<string>("");
+  const [paymentCreated, setPaymentCreated] = useState(false);
+
+  useEffect(() => {
+    if (isOpen && !paymentCreated) {
+      createPaymentRecord();
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     fetch('/api/bank-accounts')
@@ -68,6 +75,36 @@ export default function FlightPaymentModal({ isOpen, onClose, flightRoute }: Fli
       })
       .catch(error => console.error('Error fetching settings:', error));
   }, []);
+
+  const createPaymentRecord = async () => {
+    try {
+      const userRes = await fetch('/api/auth/me');
+      const userData = await userRes.json();
+      
+      if (!userData.user) {
+        toast.error('Silakan login terlebih dahulu');
+        return;
+      }
+
+      const response = await fetch('/api/payments', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          flightRouteId: flightRoute.id,
+          userId: userData.user.id,
+          userEmail: userData.user.email,
+          userName: userData.user.name || userData.user.username || userData.user.email,
+          amount: flightRoute.price,
+        }),
+      });
+
+      if (response.ok) {
+        setPaymentCreated(true);
+      }
+    } catch (error) {
+      console.error('Error creating payment:', error);
+    }
+  };
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('id-ID', {
