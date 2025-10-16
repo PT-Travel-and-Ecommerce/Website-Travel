@@ -11,6 +11,7 @@ import CitySelector from "@/components/flights/city-selector";
 import DateSelector from "@/components/flights/date-selector";
 import { Repeat2 } from "lucide-react";
 import { type City } from "@/types";
+import { formatDateToString } from "@/lib/format";
 
 const FlightSearchForm = () => {
   const t = useTranslations('search');
@@ -116,8 +117,14 @@ const FlightSearchForm = () => {
                   if (fromCity) params.set('from', fromCity.id);
                   if (toCity) params.set('to', toCity.id);
                   if (tripType) params.set('tripType', tripType);
-                  if (departDate) params.set('departDate', departDate.toISOString());
-                  if (returnDate) params.set('returnDate', returnDate.toISOString());
+                  if (departDate) {
+                    const dateStr = formatDateToString(departDate);
+                    if (dateStr) params.set('departDate', dateStr);
+                  }
+                  if (returnDate) {
+                    const dateStr = formatDateToString(returnDate);
+                    if (dateStr) params.set('returnDate', dateStr);
+                  }
                   router.push(`/flights?${params.toString()}`);
                 }}
                 className="h-[48px] w-[150px] gap-1 rounded-sm bg-primary px-[16px] py-[8px] text-primary-foreground hover:bg-[#9BE0C8] active:bg-[#82CBB2]"

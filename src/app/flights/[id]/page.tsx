@@ -10,7 +10,7 @@ import { FlightResultCard } from "@/components/flights/flight-result-card";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowLeft, Plane, Calendar } from 'lucide-react';
-import { formatRupiah } from '@/lib/format';
+import { formatRupiah, formatDateToString } from '@/lib/format';
 import FlightPaymentModal from '@/components/flights/flight-payment-modal';
 
 interface OtherFee {
@@ -102,6 +102,19 @@ export default function FlightDetailPage({
       const params = new URLSearchParams();
       params.append('departureCityId', flightRoute.departureCityId);
       params.append('arrivalCityId', flightRoute.arrivalCityId);
+      
+      // Include date filters to match the original search criteria
+      if (flightRoute.departureDate) {
+        const departureDate = new Date(flightRoute.departureDate);
+        const dateStr = formatDateToString(departureDate);
+        if (dateStr) params.append('departureDate', dateStr);
+      }
+      
+      if (flightRoute.returnDate) {
+        const returnDate = new Date(flightRoute.returnDate);
+        const dateStr = formatDateToString(returnDate);
+        if (dateStr) params.append('returnDate', dateStr);
+      }
 
       const response = await fetch(`/api/flight-routes?${params.toString()}`);
       const data = await response.json();
@@ -130,14 +143,23 @@ export default function FlightDetailPage({
         return false;
       }
 
-      const departureTimeStr = route.departureTime;
-      const [hours, minutes] = departureTimeStr.split(':').map(Number);
-      const departureHours = hours + minutes / 60;
-      if (
-        departureHours < filters.departureTimeRange[0] ||
-        departureHours > filters.departureTimeRange[1]
-      ) {
-        return false;
+      // Parse departure time from datetime string
+      if (route.departureTime) {
+        try {
+          const date = new Date(route.departureTime);
+          const hours = date.getHours();
+          const minutes = date.getMinutes();
+          const departureHours = hours + minutes / 60;
+          
+          if (
+            departureHours < filters.departureTimeRange[0] ||
+            departureHours > filters.departureTimeRange[1]
+          ) {
+            return false;
+          }
+        } catch (error) {
+          console.error('Error parsing departure time:', error);
+        }
       }
 
       if (filters.ratings.length > 0 && !filters.ratings.includes(route.rating)) {

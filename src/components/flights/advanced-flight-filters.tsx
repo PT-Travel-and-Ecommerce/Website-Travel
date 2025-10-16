@@ -144,8 +144,8 @@ export function AdvancedFlightFilters({
                 className="w-full"
               />
               <div className="flex justify-between text-sm text-muted-foreground">
-                <span>{formatTime(filters.departureTimeRange[0])} am</span>
-                <span>{formatTime(filters.departureTimeRange[1])} pm</span>
+                <span>{formatTime(filters.departureTimeRange[0])}</span>
+                <span>{formatTime(filters.departureTimeRange[1])}</span>
               </div>
             </div>
           </div>

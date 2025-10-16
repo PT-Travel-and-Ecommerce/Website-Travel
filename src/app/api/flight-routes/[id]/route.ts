@@ -58,9 +58,18 @@ export async function PUT(
       updateData.arrivalCity = { connect: { id: body.arrivalCityId } };
     }
     
-    if (body.departureDate) updateData.departureDate = new Date(body.departureDate);
+    // Parse dates safely without timezone issues
+    if (body.departureDate) {
+      const [year, month, day] = body.departureDate.split('-').map(Number);
+      updateData.departureDate = new Date(Date.UTC(year, month - 1, day));
+    }
     if (body.returnDate !== undefined) {
-      updateData.returnDate = body.returnDate ? new Date(body.returnDate) : null;
+      if (body.returnDate) {
+        const [year, month, day] = body.returnDate.split('-').map(Number);
+        updateData.returnDate = new Date(Date.UTC(year, month - 1, day));
+      } else {
+        updateData.returnDate = null;
+      }
     }
     if (body.airline) updateData.airline = body.airline;
     if (body.departureTime) updateData.departureTime = new Date(`1970-01-01T${body.departureTime}`);

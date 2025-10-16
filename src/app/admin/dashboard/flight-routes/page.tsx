@@ -118,6 +118,59 @@ export default function FlightRoutesPage() {
     return otherFeesTotal - discountAmount;
   };
 
+  // Calculate duration from departure and arrival time
+  const calculateDuration = (departureTime: string, arrivalTime: string): string => {
+    if (!departureTime || !arrivalTime) return '';
+    
+    const [depHour, depMin] = departureTime.split(':').map(Number);
+    const [arrHour, arrMin] = arrivalTime.split(':').map(Number);
+    
+    let totalMinutes = (arrHour * 60 + arrMin) - (depHour * 60 + depMin);
+    
+    // Handle overnight flights (arrival time is next day)
+    if (totalMinutes < 0) {
+      totalMinutes += 24 * 60;
+    }
+    
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+    
+    return `${hours}h ${minutes}m`;
+  };
+
+  // Extract time from datetime string (format: HH:mm)
+  const extractTimeFromDateTime = (datetime: string): string => {
+    if (!datetime) return '';
+    try {
+      const date = new Date(datetime);
+      const hours = date.getHours().toString().padStart(2, '0');
+      const minutes = date.getMinutes().toString().padStart(2, '0');
+      return `${hours}:${minutes}`;
+    } catch {
+      return '';
+    }
+  };
+
+  // Format time to 12-hour format with AM/PM
+  const formatTimeToAMPM = (datetime: string): string => {
+    if (!datetime) return '';
+    try {
+      const date = new Date(datetime);
+      let hours = date.getHours();
+      const minutes = date.getMinutes();
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      
+      // Convert 24-hour to 12-hour format
+      hours = hours % 12;
+      hours = hours ? hours : 12; // 0 should be 12
+      
+      const minutesStr = minutes.toString().padStart(2, '0');
+      return `${hours}:${minutesStr} ${ampm}`;
+    } catch {
+      return '';
+    }
+  };
+
   const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -162,6 +215,26 @@ export default function FlightRoutesPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    // Validasi tanggal keberangkatan wajib diisi
+    if (!formData.departureDate) {
+      toast.error('Tanggal keberangkatan wajib diisi!');
+      return;
+    }
+
+    // Validasi tanggal pulang wajib diisi
+    if (!formData.returnDate) {
+      toast.error('Tanggal pulang wajib diisi!');
+      return;
+    }
+
+    // Validasi tanggal pulang harus setelah tanggal keberangkatan
+    const departureDate = new Date(formData.departureDate);
+    const returnDate = new Date(formData.returnDate);
+    if (returnDate <= departureDate) {
+      toast.error('Tanggal pulang harus setelah tanggal keberangkatan!');
+      return;
+    }
+
     const totalPrice = calculateTotalPrice(otherFees, formData.discount);
 
     try {
@@ -199,7 +272,7 @@ export default function FlightRoutesPage() {
           totalPrice,
           rating: parseInt(formData.rating),
           availableSeats: parseInt(formData.availableSeats),
-          returnDate: formData.returnDate || null,
+          returnDate: formData.returnDate,
         }),
       });
 
@@ -223,14 +296,19 @@ export default function FlightRoutesPage() {
 
   const handleEdit = (route: FlightRoute) => {
     setEditingRoute(route);
+    
+    // Extract time properly from datetime strings
+    const depTime = extractTimeFromDateTime(route.departureTime);
+    const arrTime = extractTimeFromDateTime(route.arrivalTime);
+    
     setFormData({
       departureCityId: route.departureCityId,
       arrivalCityId: route.arrivalCityId,
       departureDate: route.departureDate.split('T')[0],
       returnDate: route.returnDate ? route.returnDate.split('T')[0] : '',
       airline: route.airline,
-      departureTime: route.departureTime,
-      arrivalTime: route.arrivalTime,
+      departureTime: depTime,
+      arrivalTime: arrTime,
       duration: route.duration,
       rating: route.rating.toString(),
       availableSeats: route.availableSeats.toString(),
@@ -366,7 +444,9 @@ export default function FlightRoutesPage() {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="departureDate">Tanggal Keberangkatan</Label>
+                    <Label htmlFor="departureDate">
+                      Tanggal Keberangkatan <span className="text-red-500">*</span>
+                    </Label>
                     <Input
                       type="date"
                       id="departureDate"
@@ -376,9 +456,14 @@ export default function FlightRoutesPage() {
                       }
                       required
                     />
+                    <p className="text-xs text-muted-foreground">
+                      Wajib diisi untuk pencarian dengan tanggal
+                    </p>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="returnDate">Tanggal Kembali (Opsional)</Label>
+                    <Label htmlFor="returnDate">
+                      Tanggal Pulang <span className="text-red-500">*</span>
+                    </Label>
                     <Input
                       type="date"
                       id="returnDate"
@@ -386,7 +471,12 @@ export default function FlightRoutesPage() {
                       onChange={(e) =>
                         setFormData({ ...formData, returnDate: e.target.value })
                       }
+                      min={formData.departureDate}
+                      required
                     />
+                    <p className="text-xs text-muted-foreground">
+                      Wajib diisi dan harus setelah tanggal keberangkatan
+                    </p>
                   </div>
                 </div>
 
@@ -410,9 +500,15 @@ export default function FlightRoutesPage() {
                       type="time"
                       id="departureTime"
                       value={formData.departureTime}
-                      onChange={(e) =>
-                        setFormData({ ...formData, departureTime: e.target.value })
-                      }
+                      onChange={(e) => {
+                        const newDepartureTime = e.target.value;
+                        const newDuration = calculateDuration(newDepartureTime, formData.arrivalTime);
+                        setFormData({ 
+                          ...formData, 
+                          departureTime: newDepartureTime,
+                          duration: newDuration || formData.duration
+                        });
+                      }}
                       required
                     />
                   </div>
@@ -422,24 +518,31 @@ export default function FlightRoutesPage() {
                       type="time"
                       id="arrivalTime"
                       value={formData.arrivalTime}
-                      onChange={(e) =>
-                        setFormData({ ...formData, arrivalTime: e.target.value })
-                      }
+                      onChange={(e) => {
+                        const newArrivalTime = e.target.value;
+                        const newDuration = calculateDuration(formData.departureTime, newArrivalTime);
+                        setFormData({ 
+                          ...formData, 
+                          arrivalTime: newArrivalTime,
+                          duration: newDuration || formData.duration
+                        });
+                      }}
                       required
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="duration">Durasi</Label>
+                    <Label htmlFor="duration">Durasi (Otomatis)</Label>
                     <Input
                       type="text"
                       id="duration"
                       placeholder="2h 30m"
                       value={formData.duration}
-                      onChange={(e) =>
-                        setFormData({ ...formData, duration: e.target.value })
-                      }
-                      required
+                      readOnly
+                      className="bg-muted"
                     />
+                    <p className="text-xs text-muted-foreground">
+                      Dikalkulasi otomatis dari waktu berangkat dan tiba
+                    </p>
                   </div>
                 </div>
 
@@ -677,7 +780,7 @@ export default function FlightRoutesPage() {
                     )}
                     <div>
                       <span className="font-medium">Waktu:</span>{' '}
-                      {route.departureTime} - {route.arrivalTime}
+                      {formatTimeToAMPM(route.departureTime)} - {formatTimeToAMPM(route.arrivalTime)}
                     </div>
                     <div>
                       <span className="font-medium">Durasi:</span> {route.duration}

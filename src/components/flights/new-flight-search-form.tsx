@@ -9,6 +9,7 @@ import { Plane, Repeat2 } from 'lucide-react';
 import CitySelector from './city-selector';
 import DateSelector from './date-selector';
 import { type City } from '@/types';
+import { formatDateToString } from '@/lib/format';
 
 interface FlightSearchFormProps {
   onSearch: (params: SearchParams) => void;
@@ -91,8 +92,14 @@ export default function NewFlightSearchForm({ onSearch, initialFilters }: Flight
     if (fromCity) params.set('from', fromCity.id);
     if (toCity) params.set('to', toCity.id);
     if (tripType) params.set('tripType', tripType);
-    if (departDate) params.set('departDate', departDate.toISOString().split('T')[0]);
-    if (returnDate) params.set('returnDate', returnDate.toISOString().split('T')[0]);
+    if (departDate) {
+      const dateStr = formatDateToString(departDate);
+      if (dateStr) params.set('departDate', dateStr);
+    }
+    if (returnDate) {
+      const dateStr = formatDateToString(returnDate);
+      if (dateStr) params.set('returnDate', dateStr);
+    }
     router.push(`/flights?${params.toString()}`);
   };
 

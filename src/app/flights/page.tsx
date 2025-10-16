@@ -10,6 +10,7 @@ import NewFlightSearchForm, { SearchParams } from "@/components/flights/new-flig
 import { AdvancedFlightFilters } from "@/components/flights/advanced-flight-filters";
 import { FlightResultCard } from "@/components/flights/flight-result-card";
 import { Button } from "@/components/ui/button";
+import { formatDateToString } from "@/lib/format";
 
 interface OtherFee {
   id: string;
@@ -69,14 +70,22 @@ function FlightsContent() {
     const returnDateStr = searchParams.get('returnDate');
 
     if (fromCityId || toCityId || tripType) {
+      // Clean up date strings - extract only YYYY-MM-DD part
+      const cleanDepartDate = departDateStr 
+        ? (departDateStr.includes('T') ? departDateStr.split('T')[0] : departDateStr)
+        : null;
+      const cleanReturnDate = returnDateStr 
+        ? (returnDateStr.includes('T') ? returnDateStr.split('T')[0] : returnDateStr)
+        : null;
+
       setSearchFilters({
         from: fromCityId ? { id: fromCityId, name: '', description: '', imageUrl: '', createdAt: new Date() } : null,
         to: toCityId ? { id: toCityId, name: '', description: '', imageUrl: '', createdAt: new Date() } : null,
-        departDate: departDateStr ? new Date(departDateStr) : undefined,
-        returnDate: returnDateStr ? new Date(returnDateStr) : undefined,
+        departDate: cleanDepartDate ? new Date(cleanDepartDate) : undefined,
+        returnDate: cleanReturnDate ? new Date(cleanReturnDate) : undefined,
         tripType,
       });
-      fetchFlightRoutes(fromCityId, toCityId, departDateStr, returnDateStr);
+      fetchFlightRoutes(fromCityId, toCityId, cleanDepartDate, cleanReturnDate);
     }
   }, [searchParams]);
 
@@ -100,11 +109,19 @@ function FlightsContent() {
 
       const response = await fetch(`/api/flight-routes?${params.toString()}`);
       const data = await response.json();
-      setFlightRoutes(data);
+      
+      // Ensure data is an array
+      if (Array.isArray(data)) {
+        setFlightRoutes(data);
+      } else {
+        console.error('API returned non-array data:', data);
+        setFlightRoutes([]);
+      }
 
       // Keep priceRange fixed to [100000, 100000000] per UI requirement
     } catch (error) {
       console.error('Error fetching flight routes:', error);
+      setFlightRoutes([]);
     } finally {
       setLoading(false);
     }
@@ -119,15 +136,22 @@ function FlightsContent() {
         return false;
       }
 
-      const departureTimeStr = route.departureTime || '';
-      if (departureTimeStr) {
-        const [hours, minutes] = departureTimeStr.split(':').map(Number);
-        const departureHours = hours + (minutes || 0) / 60;
-        if (
-          departureHours < filters.departureTimeRange[0] ||
-          departureHours > filters.departureTimeRange[1]
-        ) {
-          return false;
+      // Parse departure time from datetime string
+      if (route.departureTime) {
+        try {
+          const date = new Date(route.departureTime);
+          const hours = date.getHours();
+          const minutes = date.getMinutes();
+          const departureHours = hours + minutes / 60;
+          
+          if (
+            departureHours < filters.departureTimeRange[0] ||
+            departureHours > filters.departureTimeRange[1]
+          ) {
+            return false;
+          }
+        } catch (error) {
+          console.error('Error parsing departure time:', error);
         }
       }
 
@@ -164,12 +188,15 @@ function FlightsContent() {
 
   const handleSearch = (params: SearchParams) => {
     setSearchFilters(params);
-    if (params.from && params.to && params.departDate) {
+    if (params.from && params.to) {
+      const departDateStr = formatDateToString(params.departDate);
+      const returnDateStr = formatDateToString(params.returnDate);
+        
       fetchFlightRoutes(
         params.from.id,
         params.to.id,
-        params.departDate.toISOString().split('T')[0],
-        params.returnDate ? params.returnDate.toISOString().split('T')[0] : null
+        departDateStr || null,
+        returnDateStr || null
       );
     }
   };
