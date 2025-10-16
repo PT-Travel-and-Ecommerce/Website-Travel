@@ -1,0 +1,71 @@
+### Prompt Integrasi SSO Darulgs di Next.js (Versi Singkat)
+
+Saya ingin menambahkan fitur **login via SSO Darulgs (`https://ssoauth.darulgs.co.id`)** ke website saya yang dibuat dengan **Next.js + Prisma + PostgreSQL**.
+
+#### 🎯 Tujuan:
+
+* Login SSO hanya digunakan untuk **user biasa**, bukan admin.
+* Login SSO dipakai ketika user menekan tombol **"Bayar Sekarang"** di halaman:
+
+  ```
+  /flights/:id/book
+  ```
+* Jika user belum login, redirect ke:
+
+  ```
+  https://ssoauth.darulgs.co.id/login?redirectUrl=https://travelin.co.id/auth/callback
+  ```
+* Setelah user login di SSO, sistem akan mengarahkan kembali ke aplikasi saya melalui URL callback seperti berikut:
+
+  ```
+  https://travelin.co.id/auth/callback?code=<kode_dari_SSO>
+  ```
+
+#### ⚙️ Alur yang Diinginkan:
+
+1. **Frontend (Next.js):**
+
+   * Saat user klik “Bayar Sekarang”, periksa apakah sudah login.
+   * Jika belum, redirect ke URL login SSO di atas.
+
+2. **Backend (Next.js Route Handler `/auth/callback`):**
+
+   * Terima query `code` dari URL callback.
+   * Panggil API validasi SSO menggunakan `code` tersebut:
+
+     ```
+     https://ssoauth.darulgs.co.id/api/example/ssovalidate?code=<code>
+     ```
+   * Ambil data user dari response (ID, username, email, no_hp).
+   * Cek user di database Prisma:
+
+     * Jika belum ada → buat user baru.
+     * Jika sudah ada → update waktu login terakhir.
+   * Buat session lokal (JWT/cookie HTTPOnly) dan redirect ke halaman booking.
+
+#### 🔐 Catatan Keamanan:
+
+* Validasi token (`code`) hanya boleh dilakukan di server (bukan di client/browser).
+* Jangan tampilkan `code` atau hasil response API di network inspector.
+* Gunakan cookie HTTPOnly untuk menyimpan session login.
+* Login admin tetap pakai sistem internal.
+
+#### 🧾 Contoh Response dari API SSO:
+
+```json
+{
+  "status": true,
+  "user": {
+    "id": 23,
+    "username": "dayat",
+    "email": "dayat@darulgs.co.id",
+    "no_hp": "08xxxxxxxx"
+  }
+}
+```
+
+#### 💡 Hasil Akhir yang Diharapkan:
+
+* User yang login di sistem SSO otomatis login di website Travelin.
+* Setelah login berhasil, user langsung diarahkan ke halaman pembayaran.
+* Struktur utama Next.js, Prisma, dan PostgreSQL tidak perlu diubah.
