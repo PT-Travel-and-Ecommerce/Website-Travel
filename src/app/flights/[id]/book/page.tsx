@@ -11,6 +11,7 @@ import { Separator } from "@/components/ui/separator";
 import { ArrowLeft, Plane, Heart, Share2 } from 'lucide-react';
 import { formatRupiah } from '@/lib/format';
 import FlightPaymentModal from '@/components/flights/flight-payment-modal';
+import { getCurrentUser, redirectToSSO } from '@/lib/sso-auth';
 
 interface OtherFee {
   id: string;
@@ -54,10 +55,26 @@ export default function FlightBookingPage({
   const [loading, setLoading] = useState(true);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     fetchFlightRoute();
+    checkLoginStatus();
   }, [resolvedParams.id]);
+
+  const checkLoginStatus = () => {
+    const user = getCurrentUser();
+    setIsLoggedIn(!!user);
+  };
+
+  const handlePayNowClick = () => {
+    if (!isLoggedIn) {
+      const currentUrl = window.location.pathname;
+      redirectToSSO(currentUrl);
+    } else {
+      setShowPaymentModal(true);
+    }
+  };
 
   const fetchFlightRoute = async () => {
     try {
@@ -288,9 +305,9 @@ export default function FlightBookingPage({
                 <Button
                   size="lg"
                   className="w-full"
-                  onClick={() => setShowPaymentModal(true)}
+                  onClick={handlePayNowClick}
                 >
-                                  {t('payNow')}
+                  {isLoggedIn ? t('payNow') : 'Login & Pay Now'}
                 </Button>
 
                 <div className="pt-4 border-t space-y-3 text-sm">
