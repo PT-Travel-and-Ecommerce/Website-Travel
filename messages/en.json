@@ -60,7 +60,28 @@
     "legal": "Legal",
     "terms": "Terms & Conditions",
     "privacy": "Privacy Policy",
-    "rights": "All Rights Reserved"
+    "rights": "All Rights Reserved",
+    "ourDestination": "Our Destination",
+    "canada": "Canada",
+    "alaska": "Alaska",
+    "france": "France",
+    "iceland": "Iceland",
+    "ourActivity": "Our Activity",
+    "northernLights": "Northern Lights",
+    "cruisingSailing": "Cruising & Sailing",
+    "multiActivities": "Multi-activities",
+    "kayaking": "Kayaking",
+    "travelBlogs": "Travel Blogs",
+    "baliGuide": "Bali Travel Guide",
+    "srilankaGuide": "Srilanka Travel Guide",
+    "peruGuide": "Peru Travel Guide",
+    "aboutUs": "About Us",
+    "ourStory": "Our Story",
+    "workWithUs": "Work with Us",
+    "contactSection": "Contact",
+    "supportCenter": "Support Center",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
   },
   "login": {
     "title": "Login to Your Account",
@@ -150,7 +171,9 @@
     "total": "Total",
     "loadMore": "Load More",
     "rating": "Rating",
-    "applyFilters": "Apply Filters"
+    "applyFilters": "Apply Filters",
+    "departureDate": "Departure Date",
+    "noFareDetails": "No fare details available"
   },
   "packages": {
     "title": "Vacation Packages",
@@ -279,5 +302,35 @@
       "title": "Contact Information",
       "content": "For questions about these Terms of Service, please contact us at legal@golobe.com"
     }
+  },
+  "common": {
+    "back": "Back",
+    "loading": "Loading...",
+    "searchCity": "Search city...",
+    "noCitiesFound": "No cities found",
+    "selectCity": "Select city",
+    "city": "City",
+    "airportName": "Airport name",
+    "reviews": "reviews",
+    "startingFrom": "starting from",
+    "viewDeals": "View Deals",
+    "date": "Date",
+    "type": "Type",
+    "included": "Included",
+    "verifiedCustomer": "Verified Customer",
+    "pleaseWait": "Please wait",
+    "loadingReviews": "Loading reviews...",
+    "departureDate": "Departure Date",
+    "noFareDetails": "No fare details available"
+  },
+  "ctaCards": {
+    "flightsTitle": "Flights",
+    "flightsDescription": "Search Flights & Places Hire to our most popular destinations"
+  },
+  "stats": {
+    "averageRating": "Average Rating",
+    "satisfiedCustomers": "Satisfied Customers",
+    "satisfactionRate": "Satisfaction Rate",
+    "fiveStarReviews": "5-Star Reviews"
   }
 }

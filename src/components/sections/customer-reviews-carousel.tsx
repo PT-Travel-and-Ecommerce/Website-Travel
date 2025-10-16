@@ -5,42 +5,45 @@ import { useTranslations } from 'next-intl';
 import useEmblaCarousel from 'embla-carousel-react';
 import { Star, Users, BadgePercent, BarChart3 as TrendingUp, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 
-type Stat = { icon: React.ComponentType<any>; value: string; label: string; bgColor: string };
+type Stat = { icon: React.ComponentType<any>; value: string; labelKey: string; bgColor: string };
 
 const stats: Stat[] = [
   {
     icon: Star,
     value: "5.0",
-    label: "Average Rating",
+    labelKey: "averageRating",
     bgColor: "bg-chart-1/20",
   },
   {
     icon: Users,
     value: "1+",
-    label: "Satisfied Customers",
+    labelKey: "satisfiedCustomers",
     bgColor: "bg-primary/20",
   },
   {
     icon: BadgePercent,
     value: "100%",
-    label: "Satisfaction Rate",
+    labelKey: "satisfactionRate",
     bgColor: "bg-chart-2/40",
   },
   {
     icon: TrendingUp,
     value: "1+",
-    label: "5-Star Reviews",
+    labelKey: "fiveStarReviews",
     bgColor: "bg-chart-3/40",
   },
 ];
 
-const StatCard = React.memo(({ icon: Icon, value, label, bgColor }: Stat) => (
-  <div className={`p-4 rounded-xl border border-gray-200 flex flex-col items-center justify-center gap-2 text-center shadow-sm ${bgColor}`}>
-    <Icon className="w-8 h-8 text-primary" strokeWidth={1.5} />
-    <p className="text-3xl font-bold text-dark-charcoal">{value}</p>
-    <p className="text-sm text-medium-gray">{label}</p>
-  </div>
-));
+const StatCard = React.memo(({ icon: Icon, value, labelKey, bgColor }: Stat) => {
+  const t = useTranslations('stats');
+  return (
+    <div className={`p-4 rounded-xl border border-gray-200 flex flex-col items-center justify-center gap-2 text-center shadow-sm ${bgColor}`}>
+      <Icon className="w-8 h-8 text-primary" strokeWidth={1.5} />
+      <p className="text-3xl font-bold text-dark-charcoal">{value}</p>
+      <p className="text-sm text-medium-gray">{t(labelKey as any)}</p>
+    </div>
+  );
+});
 StatCard.displayName = 'StatCard';
 
 type ReviewTextProps = { text: string };
@@ -137,12 +140,13 @@ const EmblaCarousel = ({ reviews }: { reviews: Review[] }) => {
 
 const CustomerReviewsCarousel = () => {
   const t = useTranslations('reviews');
+  const tCommon = useTranslations('common');
   const [reviews, setReviews] = useState([
     {
-      name: "Loading...",
-      title: "Please wait",
+      name: tCommon('loading'),
+      title: tCommon('pleaseWait'),
       rating: 5.0,
-      text: "Loading reviews...",
+      text: tCommon('loadingReviews'),
     }
   ]);
 
@@ -155,7 +159,7 @@ const CustomerReviewsCarousel = () => {
             .filter(review => review.isActive)
             .map(review => ({
               name: review.customerName,
-              title: review.location || "Verified Customer",
+              title: review.location || tCommon('verifiedCustomer'),
               rating: review.rating,
               text: review.comment,
             }));
@@ -167,7 +171,7 @@ const CustomerReviewsCarousel = () => {
         setReviews([
           {
             name: "Mojahid",
-            title: "Verified Customer",
+            title: tCommon('verifiedCustomer'),
             rating: 5.0,
             text: "Using this travel agency's website has been a seamless experience. The platform is user-friendly and professional, making it easy to search and book flights and hotels.",
           }

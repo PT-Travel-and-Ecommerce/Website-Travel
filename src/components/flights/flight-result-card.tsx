@@ -6,6 +6,7 @@ import { Heart, Plane, Star } from 'lucide-react';
 import { formatRupiah } from '@/lib/format';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 
 interface OtherFee {
@@ -49,6 +50,7 @@ export function FlightResultCard({
   flightClass,
   departureDate,
 }: FlightResultCardProps) {
+  const t = useTranslations('common');
   const router = useRouter();
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -103,7 +105,7 @@ export function FlightResultCard({
               <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
               <span className="font-semibold text-foreground">{rating?.toFixed ? rating.toFixed(1) : rating}</span>
               <span>•</span>
-              <span>reviews</span>
+              <span>{t('reviews')}</span>
             </div>
 
             <div className="mb-4">
@@ -120,7 +122,7 @@ export function FlightResultCard({
             </div>
             {departureDate && (
               <div className="text-xs text-muted-foreground">
-                Tanggal: {new Date(departureDate).toLocaleDateString('id-ID', {
+                {t('date')}: {new Date(departureDate).toLocaleDateString('id-ID', {
                   day: 'numeric',
                   month: 'long',
                   year: 'numeric'
@@ -129,12 +131,12 @@ export function FlightResultCard({
             )}
             {flightClass && (
               <div className="text-xs font-medium text-muted-foreground capitalize">
-                Tipe: {flightClass === 'economy' ? 'Ekonomi' : flightClass === 'business' ? 'Bisnis' : flightClass === 'first' ? 'First Class' : flightClass}
+                {t('type')}: {flightClass}
               </div>
             )}
             {otherFees && otherFees.length > 0 && (
               <div className="text-xs text-muted-foreground">
-                Termasuk: {otherFees.map(fee => fee.name).join(', ')}
+                {t('included')}: {otherFees.map(fee => fee.name).join(', ')}
               </div>
             )}
           </div>
@@ -154,7 +156,7 @@ export function FlightResultCard({
           
           <div className="flex flex-col items-end gap-4 md:mt-auto">
             <div className="text-right">
-              <div className="text-xs text-muted-foreground mb-2">starting from</div>
+              <div className="text-xs text-muted-foreground mb-2">{t('startingFrom')}</div>
               {originalPrice && (
                 <div className="text-sm line-through text-muted-foreground/70 mb-1">
                   {formatRupiah(originalPrice)}
@@ -169,7 +171,7 @@ export function FlightResultCard({
               className="w-full md:w-auto md:min-w-[160px] bg-primary text-primary-foreground hover:bg-primary/90 px-6"
               size="lg"
             >
-              View Deals
+              {t('viewDeals')}
             </Button>
           </div>
         </div>

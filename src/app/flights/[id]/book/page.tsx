@@ -49,6 +49,7 @@ export default function FlightBookingPage({
   params: Promise<{ id: string }>;
 }) {
   const t = useTranslations('flights');
+  const tCommon = useTranslations('common');
   const router = useRouter();
   const resolvedParams = use(params);
   const [flightRoute, setFlightRoute] = useState<FlightRoute | null>(null);
@@ -150,7 +151,7 @@ export default function FlightBookingPage({
           className="mb-6"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
-          Back
+          {t('back')}
         </Button>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -162,10 +163,10 @@ export default function FlightBookingPage({
                 {/* Departure Date */}
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="font-semibold text-lg">
-                    Tanggal Keberangkatan: {formatDate(flightRoute.departureDate)}
+                    {t('departureDate')}: {formatDate(flightRoute.departureDate)}
                   </h3>
                   <span className="text-sm text-muted-foreground">
-                    Durasi: {flightRoute.duration}
+                    {t('duration')}: {flightRoute.duration}
                   </span>
                 </div>
 
@@ -177,7 +178,7 @@ export default function FlightBookingPage({
                   <div>
                     <h4 className="font-bold text-lg">{flightRoute.airline}</h4>
                     <p className="text-sm text-muted-foreground">
-                      {flightRoute.flightClass.charAt(0).toUpperCase() + flightRoute.flightClass.slice(1)} Class
+                      {flightRoute.flightClass === 'economy' ? t('economyClass') : flightRoute.flightClass === 'business' ? t('businessClass') : t('firstClass')}
                     </p>
                   </div>
                 </div>
@@ -248,7 +249,7 @@ export default function FlightBookingPage({
                     </>
                   ) : (
                     <div className="text-center py-4 text-muted-foreground">
-                      <p className="text-sm">Tidak ada rincian biaya tersedia</p>
+                      <p className="text-sm">{t('noFareDetails')}</p>
                     </div>
                   )}
 
@@ -307,7 +308,7 @@ export default function FlightBookingPage({
                   className="w-full"
                   onClick={handlePayNowClick}
                 >
-                  {isLoggedIn ? t('payNow') : 'Login & Pay Now'}
+                  {isLoggedIn ? t('payNow') : 'Pay Now'}
                 </Button>
 
                 <div className="pt-4 border-t space-y-3 text-sm">

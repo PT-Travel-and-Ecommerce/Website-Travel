@@ -60,7 +60,28 @@
     "legal": "Hukum",
     "terms": "Syarat & Ketentuan",
     "privacy": "Kebijakan Privasi",
-    "rights": "Hak Cipta Dilindungi"
+    "rights": "Hak Cipta Dilindungi",
+    "ourDestination": "Destinasi Kami",
+    "canada": "Kanada",
+    "alaska": "Alaska",
+    "france": "Prancis",
+    "iceland": "Islandia",
+    "ourActivity": "Aktivitas Kami",
+    "northernLights": "Cahaya Utara",
+    "cruisingSailing": "Kapal Pesiar & Berlayar",
+    "multiActivities": "Multi-aktivitas",
+    "kayaking": "Kayaking",
+    "travelBlogs": "Blog Perjalanan",
+    "baliGuide": "Panduan Perjalanan Bali",
+    "srilankaGuide": "Panduan Perjalanan Srilanka",
+    "peruGuide": "Panduan Perjalanan Peru",
+    "aboutUs": "Tentang Kami",
+    "ourStory": "Kisah Kami",
+    "workWithUs": "Bekerja dengan Kami",
+    "contactSection": "Kontak",
+    "supportCenter": "Pusat Dukungan",
+    "privacyPolicy": "Kebijakan Privasi",
+    "termsOfService": "Syarat Layanan"
   },
   "login": {
     "title": "Masuk ke Akun Anda",
@@ -150,7 +171,9 @@
     "loadMore": "Muat Lebih Banyak",
     "total": "Total",
     "rating": "Rating",
-    "applyFilters": "Terapkan Filter"
+    "applyFilters": "Terapkan Filter",
+    "departureDate": "Tanggal Keberangkatan",
+    "noFareDetails": "Tidak ada rincian biaya tersedia"
   },
   "packages": {
     "title": "Paket Liburan",
@@ -279,5 +302,35 @@
       "title": "Informasi Kontak",
       "content": "Untuk pertanyaan tentang Syarat Layanan ini, silakan hubungi kami di legal@golobe.com"
     }
+  },
+  "common": {
+    "back": "Kembali",
+    "loading": "Memuat...",
+    "searchCity": "Cari kota...",
+    "noCitiesFound": "Tidak ada kota ditemukan",
+    "selectCity": "Pilih kota",
+    "city": "Kota",
+    "airportName": "Nama Bandara",
+    "reviews": "ulasan",
+    "startingFrom": "Mulai dari",
+    "viewDeals": "Lihat Penawaran",
+    "date": "Tanggal",
+    "type": "Tipe",
+    "included": "Termasuk",
+    "verifiedCustomer": "Pelanggan Terverifikasi",
+    "pleaseWait": "Mohon tunggu",
+    "loadingReviews": "Memuat ulasan...",
+    "departureDate": "Tanggal Keberangkatan",
+    "noFareDetails": "Tidak ada rincian biaya tersedia"
+  },
+  "ctaCards": {
+    "flightsTitle": "Penerbangan",
+    "flightsDescription": "Cari Penerbangan & Tempat Menyewa ke destinasi paling populer kami"
+  },
+  "stats": {
+    "averageRating": "Rating Rata-rata",
+    "satisfiedCustomers": "Pelanggan Puas",
+    "satisfactionRate": "Tingkat Kepuasan",
+    "fiveStarReviews": "Ulasan Bintang 5"
   }
 }

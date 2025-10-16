@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import { City } from '@/types';
 import {
   Popover,
@@ -30,6 +31,7 @@ export default function CitySelector({
   placeholderTitle = 'City',
   placeholderSubtitle = 'Airport name',
 }: CitySelectorProps) {
+  const t = useTranslations('common');
   const [open, setOpen] = useState(false);
   const [cities, setCities] = useState<City[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -94,7 +96,7 @@ export default function CitySelector({
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
-                placeholder="Search city..."
+                placeholder={t('searchCity')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-9"
@@ -103,9 +105,9 @@ export default function CitySelector({
           </div>
           <div className="max-h-[300px] overflow-y-auto p-2">
             {loading ? (
-              <div className="p-4 text-center text-muted-foreground">Loading...</div>
+              <div className="p-4 text-center text-muted-foreground">{t('loading')}</div>
             ) : filteredCities.length === 0 ? (
-              <div className="p-4 text-center text-muted-foreground">No cities found</div>
+              <div className="p-4 text-center text-muted-foreground">{t('noCitiesFound')}</div>
             ) : (
               <div className="space-y-1">
                 {filteredCities.map((city) => (

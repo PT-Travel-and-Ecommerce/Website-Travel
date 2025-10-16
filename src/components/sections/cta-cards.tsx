@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 
 const CtaCards = () => {
   const t = useTranslations('nav');
+  const tCta = useTranslations('ctaCards');
   return (
     <section className="grid grid-cols-1 md:grid-cols-2 gap-5">
       <div className="relative group overflow-hidden rounded-2xl h-[440px]">
@@ -20,9 +21,9 @@ const CtaCards = () => {
         />
         <div className="absolute inset-0 bg-black/40" style={{ zIndex: 1 }} />
         <div className="relative flex h-full flex-col justify-center text-white px-5 py-10" style={{ zIndex: 2 }}>
-          <h3 className="mb-2 text-[2.5rem] font-bold text-white">Flights</h3>
+          <h3 className="mb-2 text-[2.5rem] font-bold text-white">{tCta('flightsTitle')}</h3>
           <p className="mb-5 max-w-[40ch] text-lg text-white leading-6 line-clamp-2">
-            Search Flights & Places Hire to our most popular destinations
+            {tCta('flightsDescription')}
           </p>
           <Link
             href="/flights"

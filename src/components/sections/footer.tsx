@@ -1,6 +1,9 @@
+"use client";
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { Facebook, Twitter, Youtube, Instagram } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 const GolobeLogo = () => (
   <Link href="/" aria-label="Golobe logo. Click to go to home page">
@@ -12,6 +15,7 @@ const GolobeLogo = () => (
 
 
 const Footer = () => {
+  const t = useTranslations('footer');
   return (
     <footer className="bg-primary px-4 py-10 text-white md:px-20 md:py-10">
       <div className="grid grid-cols-2 gap-8 md:grid-cols-5 md:gap-4">
@@ -34,39 +38,39 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-col gap-4 text-sm">
-          <h3 className="font-bold">Our Destination</h3>
-          <Link href="#" className="hover:underline">Canada</Link>
-          <Link href="#" className="hover:underline">Alaska</Link>
-          <Link href="#" className="hover:underline">France</Link>
-          <Link href="#" className="hover:underline">Iceland</Link>
+          <h3 className="font-bold">{t('ourDestination')}</h3>
+          <Link href="#" className="hover:underline">{t('canada')}</Link>
+          <Link href="#" className="hover:underline">{t('alaska')}</Link>
+          <Link href="#" className="hover:underline">{t('france')}</Link>
+          <Link href="#" className="hover:underline">{t('iceland')}</Link>
         </div>
 
         <div className="flex flex-col gap-4 text-sm">
-          <h3 className="font-bold">Our Activity</h3>
-          <Link href="#" className="hover:underline">Northern Lights</Link>
-          <Link href="#" className="hover:underline">Cruising & Sailing</Link>
-          <Link href="#" className="hover:underline">Multi-activities</Link>
-          <Link href="#" className="hover:underline">Kayaking</Link>
+          <h3 className="font-bold">{t('ourActivity')}</h3>
+          <Link href="#" className="hover:underline">{t('northernLights')}</Link>
+          <Link href="#" className="hover:underline">{t('cruisingSailing')}</Link>
+          <Link href="#" className="hover:underline">{t('multiActivities')}</Link>
+          <Link href="#" className="hover:underline">{t('kayaking')}</Link>
         </div>
 
         <div className="flex flex-col gap-4 text-sm">
-          <h3 className="font-bold">Travel Blogs</h3>
-          <Link href="#" className="hover:underline">Bali Travel Guide</Link>
-          <Link href="#" className="hover:underline">Srilanka Travel Guide</Link>
-          <Link href="#" className="hover:underline">Peru Travel Guide</Link>
+          <h3 className="font-bold">{t('travelBlogs')}</h3>
+          <Link href="#" className="hover:underline">{t('baliGuide')}</Link>
+          <Link href="#" className="hover:underline">{t('srilankaGuide')}</Link>
+          <Link href="#" className="hover:underline">{t('peruGuide')}</Link>
         </div>
 
         <div className="flex flex-col gap-8 text-sm">
           <div className="flex flex-col gap-4">
-            <h3 className="font-bold">About Us</h3>
-            <Link href="#" className="hover:underline">Our Story</Link>
-            <Link href="#" className="hover:underline">Work with Us</Link>
+            <h3 className="font-bold">{t('aboutUs')}</h3>
+            <Link href="#" className="hover:underline">{t('ourStory')}</Link>
+            <Link href="#" className="hover:underline">{t('workWithUs')}</Link>
           </div>
           <div className="flex flex-col gap-4">
-            <h3 className="font-bold">Contact</h3>
-            <Link href="/support" className="hover:underline">Support Center</Link>
-            <Link href="/privacy" className="hover:underline">Privacy Policy</Link>
-            <Link href="/terms" className="hover:underline">Terms of Service</Link>
+            <h3 className="font-bold">{t('contactSection')}</h3>
+            <Link href="/support" className="hover:underline">{t('supportCenter')}</Link>
+            <Link href="/privacy" className="hover:underline">{t('privacyPolicy')}</Link>
+            <Link href="/terms" className="hover:underline">{t('termsOfService')}</Link>
           </div>
         </div>
       </div>
