@@ -32,6 +32,20 @@ model Payment {
   @@map("payments")
 }
 
+model User {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email       String   @unique
+  name        String?
+  username    String?
+  phoneNumber String?  @map("phone_number")
+  ssoUserId   Int?     @map("sso_user_id")
+  lastLogin   DateTime? @map("last_login") @db.Timestamptz(6)
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@map("users")
+}
+
 model Admin {
   id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   email     String   @unique
