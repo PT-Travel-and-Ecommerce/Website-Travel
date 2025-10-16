@@ -36,16 +36,32 @@ export function getCurrentUser(): SSOUser | null {
   if (typeof window === 'undefined') return null;
   
   try {
-    const cookie = document.cookie.split('; ').find(c => c.startsWith('user_session='));
+    const cookie = document.cookie.split('; ').find(c => c.startsWith('user_email='));
     if (!cookie) return null;
     
-    const value = decodeURIComponent(cookie.split('=')[1] || '');
-    const user = JSON.parse(value) as SSOUser;
-    
-    if (user && user.id && user.email) {
-      return user;
+    const email = decodeURIComponent(cookie.split('=')[1] || '');
+    if (email) {
+      return { 
+        id: '', 
+        email, 
+        name: null, 
+        username: null, 
+        phoneNumber: null 
+      };
     }
     return null;
+  } catch {
+    return null;
+  }
+}
+
+export async function getUserSession(): Promise<SSOUser | null> {
+  try {
+    const response = await fetch('/api/auth/me');
+    if (!response.ok) return null;
+    
+    const data = await response.json();
+    return data.user || null;
   } catch {
     return null;
   }

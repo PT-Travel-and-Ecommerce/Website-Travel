@@ -3,7 +3,24 @@
 ## Overview
 This is a full-stack travel agency website built with Next.js 15, Prisma ORM, and Neon PostgreSQL. The application allows users to browse travel packages, flight options, and make bookings.
 
-## Recent Changes (October 13, 2025)
+## Recent Changes
+
+### October 16, 2025 - SSO Integration
+- ✅ Added SSO authentication from Darulgs (https://ssoauth.darulgs.co.id)
+- ✅ Created User model in Prisma with SSO fields (ssoUserId, username, phoneNumber, lastLogin)
+- ✅ Implemented SSO callback route (`/api/auth/callback`)
+- ✅ Created SSO auth utilities (`src/lib/sso-auth.ts`)
+- ✅ Updated booking page to check login and redirect to SSO
+- ✅ Added `/api/auth/me` endpoint for session verification
+- ✅ Fixed open redirect vulnerability with URL validation
+- ✅ Fixed httpOnly cookie detection issue with non-httpOnly email flag
+
+**Security Note**: Current session management uses cookies without signing/encryption. For production:
+- Implement signed JWT tokens or server-managed sessions
+- Add session verification against database
+- Consider using established auth libraries (NextAuth.js, Lucia, etc.)
+
+### October 13, 2025 - Database Migration
 - ✅ Successfully migrated from Supabase to Replit Neon PostgreSQL
 - ✅ Configured Prisma ORM with PostgreSQL database
 - ✅ Removed incorrect Drizzle configuration (server/db.ts)
@@ -27,18 +44,20 @@ This is a full-stack travel agency website built with Next.js 15, Prisma ORM, an
 - **Backend**: Next.js API Routes
 - **Database**: Neon PostgreSQL (Replit-hosted)
 - **ORM**: Prisma
-- **Authentication**: Custom auth with bcrypt
+- **Authentication**: 
+  - Admin: Custom auth with bcrypt
+  - Users: SSO from Darulgs (https://ssoauth.darulgs.co.id)
 
 ### Database Schema
 - **cities**: Travel destination cities
-- **packages**: Travel packages linked to cities
+- **flight_routes**: Flight routes with fare breakdown
 - **payments**: Payment/booking records
-- **flight_packages**: Flight options
-- **users**: Customer accounts
+- **users**: Customer accounts (SSO-enabled)
 - **admins**: Admin accounts
-- **hero_banners**: Homepage banners
 - **customer_reviews**: Customer testimonials
-- **popular_destinations**: Featured destinations
+- **site_settings**: Site configuration
+- **bank_accounts**: Payment bank accounts
+- **popular_flight_routes**: Featured flight routes
 
 ### Key Files
 - `prisma/schema.prisma`: Database schema definition
@@ -87,11 +106,35 @@ npm run prisma:studio
 - ✅ Production build successful
 - ✅ No critical errors or bugs
 
+## SSO Integration Details
+
+### How SSO Works
+1. User clicks "Pay Now" on booking page (`/flights/:id/book`)
+2. If not logged in, redirects to Darulgs SSO: `https://ssoauth.darulgs.co.id/login?redirectUrl=...`
+3. After successful login, SSO redirects back to `/auth/callback?code=...`
+4. Callback validates code, creates/updates user in database
+5. Sets session cookies and redirects user back to booking page
+6. User can now complete payment
+
+### SSO Files
+- `src/lib/sso-auth.ts`: Client-side auth utilities
+- `src/app/api/auth/callback/route.ts`: SSO callback handler
+- `src/app/api/auth/me/route.ts`: Session verification endpoint
+- User model in `prisma/schema.prisma`: Includes SSO fields
+
+### Security Considerations
+- Open redirect protection: URLs are validated
+- HttpOnly cookies for session data
+- Non-httpOnly email flag for client-side login detection
+- ⚠️ **TODO**: Implement signed tokens or server-managed sessions for production
+
 ## Next Steps
 - Application is ready for development and deployment
 - Admin dashboard available at /admin/login
+- SSO login integrated for user authentication
 - Sample data is loaded and ready to use
 - Consider adding:
+  - Signed/encrypted session tokens (JWT or similar)
   - Automated API tests for regression prevention
   - Request validation for mutation endpoints
-  - Authentication guards for admin routes
+  - Rate limiting for API endpoints

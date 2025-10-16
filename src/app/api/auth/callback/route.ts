@@ -27,6 +27,27 @@ async function validateSSOCode(code: string): Promise<SSOValidateResponse> {
   }
 }
 
+function isValidReturnUrl(returnUrl: string | null, requestUrl: string): string {
+  if (!returnUrl) return '/';
+  
+  try {
+    if (returnUrl.startsWith('/') && !returnUrl.startsWith('//')) {
+      return returnUrl;
+    }
+    
+    const requestHost = new URL(requestUrl).host;
+    const returnUrlObj = new URL(returnUrl);
+    
+    if (returnUrlObj.host === requestHost) {
+      return returnUrl;
+    }
+    
+    return '/';
+  } catch {
+    return '/';
+  }
+}
+
 export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
@@ -79,9 +100,8 @@ export async function GET(request: NextRequest) {
       phoneNumber: user.phoneNumber,
     };
 
-    const response = NextResponse.redirect(
-      new URL(returnUrl || '/', request.url)
-    );
+    const safeReturnUrl = isValidReturnUrl(returnUrl, request.url);
+    const response = NextResponse.redirect(new URL(safeReturnUrl, request.url));
 
     response.cookies.set('user_session', JSON.stringify(sessionData), {
       httpOnly: true,
