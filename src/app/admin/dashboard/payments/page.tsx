@@ -57,10 +57,26 @@ export default function PaymentsPage() {
     try {
       const response = await fetch('/api/payments');
       const data = await response.json();
-      setPayments(data);
+      
+      // Check if response is an error object
+      if (data.error) {
+        toast.error(data.error === 'Unauthorized' ? 'Tidak terotorisasi' : 'Gagal memuat data pembayaran');
+        setPayments([]);
+        return;
+      }
+      
+      // Ensure data is an array
+      if (Array.isArray(data)) {
+        setPayments(data);
+      } else {
+        console.error('Unexpected data format:', data);
+        toast.error('Format data tidak valid');
+        setPayments([]);
+      }
     } catch (error) {
       console.error('Error fetching payments:', error);
       toast.error('Gagal memuat data pembayaran');
+      setPayments([]);
     } finally {
       setLoading(false);
     }
