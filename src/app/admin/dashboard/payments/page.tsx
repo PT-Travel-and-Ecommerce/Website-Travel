@@ -47,6 +47,7 @@ export default function PaymentsPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [uploadingProof, setUploadingProof] = useState(false);
   const [proofImageUrl, setProofImageUrl] = useState('');
+  const [filterStatus, setFilterStatus] = useState<string>('all');
 
   useEffect(() => {
     fetchPayments();
@@ -190,6 +191,11 @@ export default function PaymentsPage() {
     );
   };
 
+  const filteredPayments = payments.filter((payment) => {
+    if (filterStatus === 'all') return true;
+    return payment.status === filterStatus;
+  });
+
   if (loading) {
     return (
       <div className="p-6">
@@ -209,8 +215,32 @@ export default function PaymentsPage() {
         </div>
       </div>
 
+      <Card>
+        <CardContent className="pt-6">
+          <div className="flex gap-4 items-end">
+            <div className="flex-1">
+              <Label>Filter Status</Label>
+              <Select value={filterStatus} onValueChange={setFilterStatus}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Semua Status</SelectItem>
+                  <SelectItem value="pending">Pending</SelectItem>
+                  <SelectItem value="paid">Lunas</SelectItem>
+                  <SelectItem value="cancelled">Dibatalkan</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <Button variant="outline" onClick={fetchPayments}>
+              Refresh
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+
       <div className="grid gap-4">
-        {payments.map((payment) => (
+        {filteredPayments.map((payment) => (
           <Card key={payment.id} className="hover:shadow-md transition-shadow">
             <CardContent className="pt-6">
               <div className="flex items-start justify-between">
@@ -256,10 +286,12 @@ export default function PaymentsPage() {
           </Card>
         ))}
 
-        {payments.length === 0 && (
+        {filteredPayments.length === 0 && (
           <Card>
             <CardContent className="py-12 text-center text-muted-foreground">
-              Belum ada data pembayaran
+              {filterStatus === 'all' 
+                ? 'Belum ada data pembayaran' 
+                : `Tidak ada pembayaran dengan status ${filterStatus === 'pending' ? 'pending' : filterStatus === 'paid' ? 'lunas' : 'dibatalkan'}`}
             </CardContent>
           </Card>
         )}
