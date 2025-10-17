@@ -5,6 +5,27 @@ This is a full-stack travel agency website built with Next.js 15, Prisma ORM, an
 
 ## Recent Changes
 
+### October 17, 2025 - Admin Payment Management
+- ✅ Added "Kelola Pembayaran" menu in admin dashboard sidebar
+- ✅ Created comprehensive payment management page (`/admin/dashboard/payments`)
+- ✅ Features implemented:
+  - View all payments with detailed flight route information
+  - Filter payments by status (all, pending, paid/lunas, cancelled)
+  - Manually update payment status
+  - Upload and view payment proof images
+  - Delete payment records
+- ✅ Integration with existing API endpoints (`/api/payments`, `/api/upload`)
+- ✅ Secure admin-only access with authentication checks
+- ✅ Responsive UI with modal dialogs for payment details
+- ✅ Client-side filtering for instant results
+
+**How to Use:**
+1. Login to admin dashboard at `/admin/login` (admin@example.com / Admin123!)
+2. Navigate to "Kelola Pembayaran" menu
+3. View payment list with filter options
+4. Click "Detail" to manage individual payments
+5. Update status, upload proof, or delete as needed
+
 ### October 16, 2025 - SSO Integration
 - ✅ Added SSO authentication from Darulgs (https://ssoauth.darulgs.co.id)
 - ✅ Created User model in Prisma with SSO fields (ssoUserId, username, phoneNumber, lastLogin)
