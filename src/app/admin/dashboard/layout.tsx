@@ -14,7 +14,8 @@ import {
   X,
   CreditCard,
   Route,
-  TrendingUp
+  TrendingUp,
+  Receipt
 } from "lucide-react";
 
 export default function AdminDashboardLayout({
@@ -65,6 +66,7 @@ export default function AdminDashboardLayout({
     { href: "/admin/dashboard/flight-routes", icon: Route, label: "Flight Routes" },
     { href: "/admin/dashboard/popular-routes", icon: TrendingUp, label: "Rute Populer" },
     { href: "/admin/dashboard/reviews", icon: Star, label: "Reviews" },
+    { href: "/admin/dashboard/payments", icon: Receipt, label: "Kelola Pembayaran" },
     { href: "/admin/dashboard/payment-settings", icon: CreditCard, label: "Pengaturan Pembayaran" },
   ];
 
