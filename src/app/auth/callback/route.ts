@@ -58,9 +58,16 @@ export async function GET(request: NextRequest) {
     console.log('SSO Callback - Code:', code);
     console.log('SSO Callback - ReturnUrl:', returnUrl);
 
+    // Get the correct hostname from headers (for servers binding to 0.0.0.0)
+    const host = request.headers.get('x-forwarded-host') || request.headers.get('host') || request.nextUrl.host;
+    const protocol = request.headers.get('x-forwarded-proto') || (request.nextUrl.protocol.replace(':', '')) || 'http';
+    const baseUrl = `${protocol}://${host}`;
+    
+    console.log('Base URL for redirect:', baseUrl);
+
     if (!code) {
       console.log('No code provided, redirecting to home');
-      return NextResponse.redirect(new URL('/', request.url));
+      return NextResponse.redirect(new URL('/', baseUrl));
     }
 
     console.log('Validating SSO code...');
@@ -69,7 +76,7 @@ export async function GET(request: NextRequest) {
 
     if (!ssoResponse.status || !ssoResponse.data) {
       console.log('SSO validation failed');
-      return NextResponse.redirect(new URL('/?error=sso_failed', request.url));
+      return NextResponse.redirect(new URL('/?error=sso_failed', baseUrl));
     }
 
     const ssoUser = ssoResponse.data;
@@ -111,10 +118,10 @@ export async function GET(request: NextRequest) {
       phoneNumber: user.phoneNumber,
     };
 
-    const safeReturnUrl = isValidReturnUrl(returnUrl, request.url);
+    const safeReturnUrl = isValidReturnUrl(returnUrl, baseUrl);
     console.log('Safe Return URL:', safeReturnUrl);
     
-    const response = NextResponse.redirect(new URL(safeReturnUrl, request.url));
+    const response = NextResponse.redirect(new URL(safeReturnUrl, baseUrl));
 
     response.cookies.set('user_session', JSON.stringify(sessionData), {
       httpOnly: true,
@@ -136,6 +143,9 @@ export async function GET(request: NextRequest) {
     return response;
   } catch (error) {
     console.error('SSO callback error:', error);
-    return NextResponse.redirect(new URL('/?error=server_error', request.url));
+    const host = request.headers.get('x-forwarded-host') || request.headers.get('host') || request.nextUrl.host;
+    const protocol = request.headers.get('x-forwarded-proto') || (request.nextUrl.protocol.replace(':', '')) || 'http';
+    const baseUrl = `${protocol}://${host}`;
+    return NextResponse.redirect(new URL('/?error=server_error', baseUrl));
   }
 }
