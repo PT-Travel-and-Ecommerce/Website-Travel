@@ -8,11 +8,12 @@ export interface SSOUser {
 
 export interface SSOValidateResponse {
   status: boolean;
-  user?: {
-    id: number;
+  message?: string;
+  data?: {
+    id: string;
     username: string;
     email: string;
-    no_hp: string;
+    phone: string;
   };
 }
 
@@ -73,6 +74,10 @@ export function redirectToSSO(returnUrl?: string): void {
   const baseUrl = window.location.origin;
   const callbackUrl = `${baseUrl}/auth/callback`;
   const redirectUrl = returnUrl ? `${callbackUrl}?returnUrl=${encodeURIComponent(returnUrl)}` : callbackUrl;
+  
+  console.log('SSO Redirect - Base URL:', baseUrl);
+  console.log('SSO Redirect - Callback URL:', callbackUrl);
+  console.log('SSO Redirect - Full Redirect URL:', redirectUrl);
   
   window.location.href = `https://ssoauth.darulgs.co.id/login?redirectUrl=${encodeURIComponent(redirectUrl)}`;
 }

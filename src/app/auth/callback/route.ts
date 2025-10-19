@@ -55,23 +55,32 @@ export async function GET(request: NextRequest) {
     const code = searchParams.get('code');
     const returnUrl = searchParams.get('returnUrl');
 
+    console.log('SSO Callback - Code:', code);
+    console.log('SSO Callback - ReturnUrl:', returnUrl);
+
     if (!code) {
+      console.log('No code provided, redirecting to home');
       return NextResponse.redirect(new URL('/', request.url));
     }
 
+    console.log('Validating SSO code...');
     const ssoResponse = await validateSSOCode(code);
+    console.log('SSO Response:', ssoResponse);
 
     if (!ssoResponse.status || !ssoResponse.data) {
+      console.log('SSO validation failed');
       return NextResponse.redirect(new URL('/?error=sso_failed', request.url));
     }
 
     const ssoUser = ssoResponse.data;
+    console.log('SSO User:', ssoUser);
 
     let user = await prisma.user.findUnique({
       where: { email: ssoUser.email }
     });
 
     if (!user) {
+      console.log('Creating new user...');
       user = await prisma.user.create({
         data: {
           email: ssoUser.email,
@@ -82,6 +91,7 @@ export async function GET(request: NextRequest) {
         }
       });
     } else {
+      console.log('Updating existing user...');
       user = await prisma.user.update({
         where: { id: user.id },
         data: {
@@ -102,6 +112,8 @@ export async function GET(request: NextRequest) {
     };
 
     const safeReturnUrl = isValidReturnUrl(returnUrl, request.url);
+    console.log('Safe Return URL:', safeReturnUrl);
+    
     const response = NextResponse.redirect(new URL(safeReturnUrl, request.url));
 
     response.cookies.set('user_session', JSON.stringify(sessionData), {
@@ -120,6 +132,7 @@ export async function GET(request: NextRequest) {
       path: '/',
     });
 
+    console.log('Login successful, redirecting to:', safeReturnUrl);
     return response;
   } catch (error) {
     console.error('SSO callback error:', error);
