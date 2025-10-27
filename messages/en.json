@@ -1,0 +1,336 @@
+{
+  "nav": {
+    "findFlights": "Find Flights",
+    "findHotels": "Find Hotels",
+    "login": "Login",
+    "signup": "Sign up"
+  },
+  "hero": {
+    "title": "Explore the World With Us",
+    "subtitle": "Find the best deals on flights, hotels, and vacation packages"
+  },
+  "search": {
+    "from": "From",
+    "to": "To",
+    "departure": "Departure",
+    "return": "Return",
+    "travelers": "Travelers",
+    "class": "Class",
+    "searchFlights": "Search Flights",
+    "economy": "Economy",
+    "business": "Business",
+    "firstClass": "First Class",
+    "traveler": "traveler",
+    "travelers_plural": "travelers"
+  },
+  "destinations": {
+    "popularFlights": "Popular Flight Destinations",
+    "popularHotels": "Popular Hotel Destinations",
+    "exploreDeals": "Explore our best deals"
+  },
+  "cta": {
+    "saveMore": "Save More",
+    "saveMoreDesc": "Get up to 30% off on package bookings",
+    "easyBooking": "Easy Booking",
+    "easyBookingDesc": "Fast and secure booking process",
+    "support": "24/7 Support",
+    "supportDesc": "Our team is ready to help you anytime"
+  },
+  "reviews": {
+    "title": "What Our Customers Say",
+    "subtitle": "Real experiences from thousands of satisfied customers",
+    "viewMore": "View more",
+    "viewLess": "View less"
+  },
+  "newsletter": {
+    "title": "Get the Best Deals",
+    "subtitle": "Subscribe to our newsletter for exclusive offers",
+    "placeholder": "Enter your email",
+    "subscribe": "Subscribe"
+  },
+  "footer": {
+    "description": "Your trusted travel platform for flights, hotels, and vacation packages.",
+    "company": "Company",
+    "about": "About Us",
+    "careers": "Careers",
+    "press": "Press",
+    "support": "Support",
+    "help": "Help Center",
+    "contact": "Contact Us",
+    "legal": "Legal",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy",
+    "rights": "All Rights Reserved",
+    "ourDestination": "Our Destination",
+    "canada": "Canada",
+    "alaska": "Alaska",
+    "france": "France",
+    "iceland": "Iceland",
+    "ourActivity": "Our Activity",
+    "northernLights": "Northern Lights",
+    "cruisingSailing": "Cruising & Sailing",
+    "multiActivities": "Multi-activities",
+    "kayaking": "Kayaking",
+    "travelBlogs": "Travel Blogs",
+    "baliGuide": "Bali Travel Guide",
+    "srilankaGuide": "Srilanka Travel Guide",
+    "peruGuide": "Peru Travel Guide",
+    "aboutUs": "About Us",
+    "ourStory": "Our Story",
+    "workWithUs": "Work with Us",
+    "contactSection": "Contact",
+    "supportCenter": "Support Center",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
+  },
+  "login": {
+    "title": "Login to Your Account",
+    "subtitle": "Welcome back! Please enter your details.",
+    "email": "Email",
+    "emailPlaceholder": "enter your email",
+    "password": "Password",
+    "passwordPlaceholder": "enter your password",
+    "forgotPassword": "Forgot password?",
+    "loginButton": "Login",
+    "noAccount": "Don't have an account?",
+    "signupLink": "Sign up"
+  },
+  "register": {
+    "title": "Create Account",
+    "subtitle": "Join us today!",
+    "name": "Full Name",
+    "namePlaceholder": "enter your full name",
+    "email": "Email",
+    "emailPlaceholder": "enter your email",
+    "password": "Password",
+    "passwordPlaceholder": "enter your password",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordPlaceholder": "confirm your password",
+    "registerButton": "Register",
+    "haveAccount": "Already have an account?",
+    "loginLink": "Login"
+  },
+  "flights": {
+    "title": "Search Flights",
+    "heroTitle": "Make your travel wishlist, we'll do the rest",
+    "heroSubtitle": "Special offers to suit your plan",
+    "filters": "Filters",
+    "priceRange": "Price Range",
+    "stops": "Stops",
+    "direct": "Direct",
+    "oneStop": "1 Stop",
+    "twoPlus": "2+ Stops",
+    "airlines": "Airlines",
+    "departureTime": "Departure Time",
+    "morning": "Morning",
+    "afternoon": "Afternoon",
+    "evening": "Evening",
+    "results": "results found",
+    "details": "Details",
+    "book": "Book",
+    "payNow": "Pay Now",
+    "bookNow": "Book Now",
+    "viewDeals": "View Deals",
+    "startingFrom": "Starting from",
+    "availableSeats": "Available Seats",
+    "seats": "seats",
+    "similarFlights": "Similar Flights",
+    "cheapest": "Cheapest",
+    "quickest": "Quickest",
+    "showing": "Showing",
+    "of": "of",
+    "result": "result",
+    "results_plural": "results",
+    "noFlightsFound": "No flights found. Try adjusting your filters.",
+    "loading": "Loading...",
+    "flightNotFound": "Flight not found",
+    "tripType": "Trip Type",
+    "oneWay": "One Way",
+    "roundTrip": "Round Trip",
+    "multiCity": "Multi City",
+    "searchFlightButton": "Search Flights",
+    "passengerInfo": "Passenger Information",
+    "fareDetails": "Fare Details",
+    "passengerType": "Passenger Type",
+    "adult": "Adult",
+    "traveler": "traveler",
+    "baggageDetails": "Baggage Details",
+    "cabinBaggage": "Cabin Baggage",
+    "checkedBaggage": "Checked Baggage",
+    "subtotal": "Subtotal",
+    "discount": "Discount",
+    "route": "Route",
+    "duration": "Duration",
+    "airline": "Airline",
+    "class": "Class",
+    "economyClass": "Economy",
+    "businessClass": "Business",
+    "firstClass": "First Class",
+    "back": "Back",
+    "taxesAndFees": "taxes & fees",
+    "total": "Total",
+    "loadMore": "Load More",
+    "rating": "Rating",
+    "applyFilters": "Apply Filters",
+    "departureDate": "Departure Date",
+    "noFareDetails": "No fare details available"
+  },
+  "packages": {
+    "title": "Vacation Packages",
+    "days": "days",
+    "nights": "nights",
+    "viewDetails": "View Details",
+    "bookNow": "Book Now"
+  },
+  "payment": {
+    "title": "Payment",
+    "summary": "Booking Summary",
+    "total": "Total",
+    "confirm": "Confirm Payment"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: January 2025",
+    "section1": {
+      "title": "Introduction",
+      "content": "At Golobe, we are committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our travel booking platform."
+    },
+    "section2": {
+      "title": "Information We Collect",
+      "content": "We collect information that you provide directly to us, including:",
+      "item1": "Personal identification information (name, email address, phone number)",
+      "item2": "Payment information (credit card details, billing address)",
+      "item3": "Travel preferences and booking history",
+      "item4": "Communication preferences and feedback"
+    },
+    "section3": {
+      "title": "How We Use Your Information",
+      "content": "We use the information we collect to provide, maintain, and improve our services, process your bookings, send you confirmations and updates, respond to your requests and inquiries, and personalize your experience on our platform."
+    },
+    "section4": {
+      "title": "Information Sharing",
+      "content": "We do not sell your personal information. We may share your information with service providers who help us operate our platform, airlines, hotels, and other travel service providers to complete your bookings, and law enforcement when required by law."
+    },
+    "section5": {
+      "title": "Data Security",
+      "content": "We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction."
+    },
+    "section6": {
+      "title": "Contact Us",
+      "content": "If you have any questions about this Privacy Policy, please contact us at privacy@golobe.com"
+    }
+  },
+  "support": {
+    "title": "Support Center",
+    "subtitle": "We're here to help you 24/7",
+    "email": {
+      "title": "Email Support",
+      "description": "Send us an email anytime"
+    },
+    "phone": {
+      "title": "Phone Support",
+      "description": "Call us for immediate assistance"
+    },
+    "chat": {
+      "title": "Live Chat",
+      "description": "Chat with our support team",
+      "button": "Start Chat"
+    },
+    "hours": {
+      "title": "Support Hours",
+      "description": "24/7 Available"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": {
+        "question": "How do I book a flight?",
+        "answer": "You can book a flight by using our search feature on the homepage. Enter your departure and destination cities, select your travel dates, and choose from available flights. Follow the booking process to complete your purchase."
+      },
+      "q2": {
+        "question": "What is your cancellation policy?",
+        "answer": "Cancellation policies vary depending on the airline, hotel, or service provider. You can find specific cancellation terms during the booking process and in your booking confirmation email."
+      },
+      "q3": {
+        "question": "How do I modify my booking?",
+        "answer": "To modify your booking, log in to your account and go to 'My Bookings'. Select the booking you want to change and follow the modification process. Please note that changes may be subject to fees."
+      },
+      "q4": {
+        "question": "Is my payment information secure?",
+        "answer": "Yes, we use industry-standard encryption and security measures to protect your payment information. We never store your complete credit card details on our servers."
+      }
+    }
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "lastUpdated": "Last updated: January 2025",
+    "section1": {
+      "title": "Agreement to Terms",
+      "content": "By accessing and using Golobe, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using this site."
+    },
+    "section2": {
+      "title": "Use License",
+      "content": "Permission is granted to temporarily access our platform for personal, non-commercial use. This license does not include:",
+      "item1": "Modifying or copying our materials",
+      "item2": "Using the materials for commercial purposes",
+      "item3": "Attempting to reverse engineer any software on our platform",
+      "item4": "Removing any copyright or proprietary notations"
+    },
+    "section3": {
+      "title": "Booking Terms",
+      "content": "When you make a booking through Golobe, you agree to:",
+      "item1": "Provide accurate and complete information",
+      "item2": "Pay all charges associated with your booking",
+      "item3": "Comply with the terms and conditions of the service providers"
+    },
+    "section4": {
+      "title": "Payment Terms",
+      "content": "All payments must be made in full at the time of booking unless otherwise specified. Prices are subject to change without notice. You are responsible for any fees charged by your bank or payment provider."
+    },
+    "section5": {
+      "title": "Cancellations and Refunds",
+      "content": "Cancellation and refund policies are determined by the individual service providers (airlines, hotels, etc.). Golobe acts as an intermediary and follows the policies of these providers."
+    },
+    "section6": {
+      "title": "Limitation of Liability",
+      "content": "Golobe shall not be liable for any damages arising from the use or inability to use our platform, including but not limited to direct, indirect, incidental, or consequential damages."
+    },
+    "section7": {
+      "title": "Modifications to Service",
+      "content": "We reserve the right to modify or discontinue our service at any time without notice. We shall not be liable to you or any third party for any modification, suspension, or discontinuance of the service."
+    },
+    "section8": {
+      "title": "Contact Information",
+      "content": "For questions about these Terms of Service, please contact us at legal@golobe.com"
+    }
+  },
+  "common": {
+    "back": "Back",
+    "loading": "Loading...",
+    "searchCity": "Search city...",
+    "noCitiesFound": "No cities found",
+    "selectCity": "Select city",
+    "city": "City",
+    "airportName": "Airport name",
+    "reviews": "reviews",
+    "startingFrom": "starting from",
+    "viewDeals": "View Deals",
+    "date": "Date",
+    "type": "Type",
+    "included": "Included",
+    "verifiedCustomer": "Verified Customer",
+    "pleaseWait": "Please wait",
+    "loadingReviews": "Loading reviews...",
+    "departureDate": "Departure Date",
+    "noFareDetails": "No fare details available"
+  },
+  "ctaCards": {
+    "flightsTitle": "Flights",
+    "flightsDescription": "Search Flights & Places Hire to our most popular destinations"
+  },
+  "stats": {
+    "averageRating": "Average Rating",
+    "satisfiedCustomers": "Satisfied Customers",
+    "satisfactionRate": "Satisfaction Rate",
+    "fiveStarReviews": "5-Star Reviews"
+  }
+}

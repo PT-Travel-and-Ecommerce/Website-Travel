@@ -1,0 +1,336 @@
+{
+  "nav": {
+    "findFlights": "Cari Penerbangan",
+    "findHotels": "Cari Hotel",
+    "login": "Masuk",
+    "signup": "Daftar"
+  },
+  "hero": {
+    "title": "Jelajahi Dunia Bersama Kami",
+    "subtitle": "Temukan penawaran terbaik untuk penerbangan, hotel, dan paket liburan"
+  },
+  "search": {
+    "from": "Dari",
+    "to": "Ke",
+    "departure": "Berangkat",
+    "return": "Pulang",
+    "travelers": "Penumpang",
+    "class": "Kelas",
+    "searchFlights": "Cari Penerbangan",
+    "economy": "Ekonomi",
+    "business": "Bisnis",
+    "firstClass": "Kelas Utama",
+    "traveler": "penumpang",
+    "travelers_plural": "penumpang"
+  },
+  "destinations": {
+    "popularFlights": "Destinasi Penerbangan Populer",
+    "popularHotels": "Destinasi Hotel Populer",
+    "exploreDeals": "Jelajahi penawaran terbaik kami"
+  },
+  "cta": {
+    "saveMore": "Hemat Lebih Banyak",
+    "saveMoreDesc": "Dapatkan diskon hingga 30% untuk pemesanan paket",
+    "easyBooking": "Pemesanan Mudah",
+    "easyBookingDesc": "Proses pemesanan yang cepat dan aman",
+    "support": "Dukungan 24/7",
+    "supportDesc": "Tim kami siap membantu Anda kapan saja"
+  },
+  "reviews": {
+    "title": "Apa Kata Pelanggan Kami",
+    "subtitle": "Pengalaman nyata dari ribuan pelanggan yang puas",
+    "viewMore": "Lihat lebih banyak",
+    "viewLess": "Lihat lebih sedikit"
+  },
+  "newsletter": {
+    "title": "Dapatkan Penawaran Terbaik",
+    "subtitle": "Berlangganan newsletter kami untuk mendapatkan penawaran eksklusif",
+    "placeholder": "Masukkan email Anda",
+    "subscribe": "Berlangganan"
+  },
+  "footer": {
+    "description": "Platform perjalanan terpercaya Anda untuk penerbangan, hotel, dan paket liburan.",
+    "company": "Perusahaan",
+    "about": "Tentang Kami",
+    "careers": "Karir",
+    "press": "Media",
+    "support": "Dukungan",
+    "help": "Pusat Bantuan",
+    "contact": "Hubungi Kami",
+    "legal": "Hukum",
+    "terms": "Syarat & Ketentuan",
+    "privacy": "Kebijakan Privasi",
+    "rights": "Hak Cipta Dilindungi",
+    "ourDestination": "Destinasi Kami",
+    "canada": "Kanada",
+    "alaska": "Alaska",
+    "france": "Prancis",
+    "iceland": "Islandia",
+    "ourActivity": "Aktivitas Kami",
+    "northernLights": "Cahaya Utara",
+    "cruisingSailing": "Kapal Pesiar & Berlayar",
+    "multiActivities": "Multi-aktivitas",
+    "kayaking": "Kayaking",
+    "travelBlogs": "Blog Perjalanan",
+    "baliGuide": "Panduan Perjalanan Bali",
+    "srilankaGuide": "Panduan Perjalanan Srilanka",
+    "peruGuide": "Panduan Perjalanan Peru",
+    "aboutUs": "Tentang Kami",
+    "ourStory": "Kisah Kami",
+    "workWithUs": "Bekerja dengan Kami",
+    "contactSection": "Kontak",
+    "supportCenter": "Pusat Dukungan",
+    "privacyPolicy": "Kebijakan Privasi",
+    "termsOfService": "Syarat Layanan"
+  },
+  "login": {
+    "title": "Masuk ke Akun Anda",
+    "subtitle": "Selamat datang kembali! Silakan masukkan detail Anda.",
+    "email": "Email",
+    "emailPlaceholder": "masukkan email Anda",
+    "password": "Kata Sandi",
+    "passwordPlaceholder": "masukkan kata sandi Anda",
+    "forgotPassword": "Lupa kata sandi?",
+    "loginButton": "Masuk",
+    "noAccount": "Belum punya akun?",
+    "signupLink": "Daftar"
+  },
+  "register": {
+    "title": "Buat Akun",
+    "subtitle": "Bergabunglah dengan kami hari ini!",
+    "name": "Nama Lengkap",
+    "namePlaceholder": "masukkan nama lengkap Anda",
+    "email": "Email",
+    "emailPlaceholder": "masukkan email Anda",
+    "password": "Kata Sandi",
+    "passwordPlaceholder": "masukkan kata sandi Anda",
+    "confirmPassword": "Konfirmasi Kata Sandi",
+    "confirmPasswordPlaceholder": "konfirmasi kata sandi Anda",
+    "registerButton": "Daftar",
+    "haveAccount": "Sudah punya akun?",
+    "loginLink": "Masuk"
+  },
+  "flights": {
+    "title": "Cari Penerbangan",
+    "heroTitle": "Buat wish list perjalananmu, biar kami yang urus sisanya",
+    "heroSubtitle": "Penawaran spesial sesuai rencanamu",
+    "filters": "Filter",
+    "priceRange": "Rentang Harga",
+    "stops": "Transit",
+    "direct": "Langsung",
+    "oneStop": "1 Transit",
+    "twoPlus": "2+ Transit",
+    "airlines": "Maskapai",
+    "departureTime": "Waktu Berangkat",
+    "morning": "Pagi",
+    "afternoon": "Siang",
+    "evening": "Malam",
+    "results": "hasil ditemukan",
+    "details": "Detail",
+    "book": "Pesan",
+    "payNow": "Bayar Sekarang",
+    "bookNow": "Pesan Sekarang",
+    "viewDeals": "Lihat Penawaran",
+    "startingFrom": "Mulai dari",
+    "availableSeats": "Kursi Tersedia",
+    "seats": "kursi",
+    "similarFlights": "Penerbangan Serupa",
+    "cheapest": "Termurah",
+    "quickest": "Tercepat",
+    "showing": "Menampilkan",
+    "of": "dari",
+    "result": "hasil",
+    "results_plural": "hasil",
+    "noFlightsFound": "Tidak ada penerbangan ditemukan. Coba sesuaikan filter Anda.",
+    "loading": "Memuat...",
+    "flightNotFound": "Penerbangan tidak ditemukan",
+    "tripType": "Jenis Perjalanan",
+    "oneWay": "Sekali Jalan",
+    "roundTrip": "Pulang Pergi",
+    "multiCity": "Multi Kota",
+    "searchFlightButton": "Cari Penerbangan",
+    "passengerInfo": "Informasi Penumpang",
+    "fareDetails": "Rincian Tarif",
+    "passengerType": "Tipe Penumpang",
+    "adult": "Dewasa",
+    "traveler": "penumpang",
+    "baggageDetails": "Detail Bagasi",
+    "cabinBaggage": "Bagasi Kabin",
+    "checkedBaggage": "Bagasi Tercatat",
+    "subtotal": "Subtotal",
+    "discount": "Diskon",
+    "route": "Rute",
+    "duration": "Durasi",
+    "airline": "Maskapai",
+    "class": "Kelas",
+    "economyClass": "Ekonomi",
+    "businessClass": "Bisnis",
+    "firstClass": "Kelas Utama",
+    "back": "Kembali",
+    "taxesAndFees": "pajak & biaya",
+    "loadMore": "Muat Lebih Banyak",
+    "total": "Total",
+    "rating": "Rating",
+    "applyFilters": "Terapkan Filter",
+    "departureDate": "Tanggal Keberangkatan",
+    "noFareDetails": "Tidak ada rincian biaya tersedia"
+  },
+  "packages": {
+    "title": "Paket Liburan",
+    "days": "hari",
+    "nights": "malam",
+    "viewDetails": "Lihat Detail",
+    "bookNow": "Pesan Sekarang"
+  },
+  "payment": {
+    "title": "Pembayaran",
+    "summary": "Ringkasan Pemesanan",
+    "total": "Total",
+    "confirm": "Konfirmasi Pembayaran"
+  },
+  "privacy": {
+    "title": "Kebijakan Privasi",
+    "lastUpdated": "Terakhir diperbarui: Januari 2025",
+    "section1": {
+      "title": "Pendahuluan",
+      "content": "Di Golobe, kami berkomitmen untuk melindungi privasi Anda. Kebijakan Privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, mengungkapkan, dan melindungi informasi Anda saat menggunakan platform pemesanan perjalanan kami."
+    },
+    "section2": {
+      "title": "Informasi yang Kami Kumpulkan",
+      "content": "Kami mengumpulkan informasi yang Anda berikan langsung kepada kami, termasuk:",
+      "item1": "Informasi identifikasi pribadi (nama, alamat email, nomor telepon)",
+      "item2": "Informasi pembayaran (detail kartu kredit, alamat penagihan)",
+      "item3": "Preferensi perjalanan dan riwayat pemesanan",
+      "item4": "Preferensi komunikasi dan umpan balik"
+    },
+    "section3": {
+      "title": "Bagaimana Kami Menggunakan Informasi Anda",
+      "content": "Kami menggunakan informasi yang kami kumpulkan untuk menyediakan, memelihara, dan meningkatkan layanan kami, memproses pemesanan Anda, mengirimkan konfirmasi dan pembaruan, merespons permintaan dan pertanyaan Anda, serta mempersonalisasi pengalaman Anda di platform kami."
+    },
+    "section4": {
+      "title": "Berbagi Informasi",
+      "content": "Kami tidak menjual informasi pribadi Anda. Kami dapat membagikan informasi Anda dengan penyedia layanan yang membantu kami mengoperasikan platform, maskapai penerbangan, hotel, dan penyedia layanan perjalanan lainnya untuk menyelesaikan pemesanan Anda, dan penegak hukum bila diwajibkan oleh hukum."
+    },
+    "section5": {
+      "title": "Keamanan Data",
+      "content": "Kami menerapkan langkah-langkah teknis dan organisasi yang tepat untuk melindungi informasi pribadi Anda dari akses, perubahan, pengungkapan, atau penghancuran yang tidak sah."
+    },
+    "section6": {
+      "title": "Hubungi Kami",
+      "content": "Jika Anda memiliki pertanyaan tentang Kebijakan Privasi ini, silakan hubungi kami di privacy@golobe.com"
+    }
+  },
+  "support": {
+    "title": "Pusat Bantuan",
+    "subtitle": "Kami siap membantu Anda 24/7",
+    "email": {
+      "title": "Dukungan Email",
+      "description": "Kirim email kapan saja"
+    },
+    "phone": {
+      "title": "Dukungan Telepon",
+      "description": "Hubungi kami untuk bantuan segera"
+    },
+    "chat": {
+      "title": "Obrolan Langsung",
+      "description": "Ngobrol dengan tim dukungan kami",
+      "button": "Mulai Obrolan"
+    },
+    "hours": {
+      "title": "Jam Operasional",
+      "description": "Tersedia 24/7"
+    },
+    "faq": {
+      "title": "Pertanyaan yang Sering Diajukan",
+      "q1": {
+        "question": "Bagaimana cara memesan penerbangan?",
+        "answer": "Anda dapat memesan penerbangan dengan menggunakan fitur pencarian di beranda. Masukkan kota keberangkatan dan tujuan, pilih tanggal perjalanan, dan pilih dari penerbangan yang tersedia. Ikuti proses pemesanan untuk menyelesaikan pembelian Anda."
+      },
+      "q2": {
+        "question": "Apa kebijakan pembatalan Anda?",
+        "answer": "Kebijakan pembatalan bervariasi tergantung pada maskapai, hotel, atau penyedia layanan. Anda dapat menemukan ketentuan pembatalan spesifik selama proses pemesanan dan di email konfirmasi pemesanan Anda."
+      },
+      "q3": {
+        "question": "Bagaimana cara mengubah pemesanan saya?",
+        "answer": "Untuk mengubah pemesanan Anda, masuk ke akun Anda dan buka 'Pemesanan Saya'. Pilih pemesanan yang ingin Anda ubah dan ikuti proses modifikasi. Harap dicatat bahwa perubahan mungkin dikenakan biaya."
+      },
+      "q4": {
+        "question": "Apakah informasi pembayaran saya aman?",
+        "answer": "Ya, kami menggunakan enkripsi dan langkah keamanan standar industri untuk melindungi informasi pembayaran Anda. Kami tidak pernah menyimpan detail kartu kredit lengkap Anda di server kami."
+      }
+    }
+  },
+  "terms": {
+    "title": "Syarat & Ketentuan",
+    "lastUpdated": "Terakhir diperbarui: Januari 2025",
+    "section1": {
+      "title": "Persetujuan Ketentuan",
+      "content": "Dengan mengakses dan menggunakan Golobe, Anda setuju untuk terikat oleh Syarat Layanan ini dan semua hukum dan peraturan yang berlaku. Jika Anda tidak setuju dengan ketentuan ini, Anda dilarang menggunakan situs ini."
+    },
+    "section2": {
+      "title": "Lisensi Penggunaan",
+      "content": "Izin diberikan untuk mengakses platform kami sementara untuk penggunaan pribadi dan non-komersial. Lisensi ini tidak termasuk:",
+      "item1": "Memodifikasi atau menyalin materi kami",
+      "item2": "Menggunakan materi untuk tujuan komersial",
+      "item3": "Mencoba merekayasa balik perangkat lunak apa pun di platform kami",
+      "item4": "Menghapus notasi hak cipta atau kepemilikan apa pun"
+    },
+    "section3": {
+      "title": "Ketentuan Pemesanan",
+      "content": "Saat Anda melakukan pemesanan melalui Golobe, Anda setuju untuk:",
+      "item1": "Memberikan informasi yang akurat dan lengkap",
+      "item2": "Membayar semua biaya yang terkait dengan pemesanan Anda",
+      "item3": "Mematuhi syarat dan ketentuan penyedia layanan"
+    },
+    "section4": {
+      "title": "Ketentuan Pembayaran",
+      "content": "Semua pembayaran harus dilakukan secara penuh pada saat pemesanan kecuali ditentukan lain. Harga dapat berubah tanpa pemberitahuan. Anda bertanggung jawab atas biaya apa pun yang dikenakan oleh bank atau penyedia pembayaran Anda."
+    },
+    "section5": {
+      "title": "Pembatalan dan Pengembalian Dana",
+      "content": "Kebijakan pembatalan dan pengembalian dana ditentukan oleh penyedia layanan individual (maskapai, hotel, dll.). Golobe bertindak sebagai perantara dan mengikuti kebijakan penyedia ini."
+    },
+    "section6": {
+      "title": "Pembatasan Tanggung Jawab",
+      "content": "Golobe tidak bertanggung jawab atas kerugian apa pun yang timbul dari penggunaan atau ketidakmampuan menggunakan platform kami, termasuk namun tidak terbatas pada kerusakan langsung, tidak langsung, insidental, atau konsekuensial."
+    },
+    "section7": {
+      "title": "Modifikasi Layanan",
+      "content": "Kami berhak untuk memodifikasi atau menghentikan layanan kami kapan saja tanpa pemberitahuan. Kami tidak bertanggung jawab kepada Anda atau pihak ketiga mana pun atas modifikasi, penangguhan, atau penghentian layanan."
+    },
+    "section8": {
+      "title": "Informasi Kontak",
+      "content": "Untuk pertanyaan tentang Syarat Layanan ini, silakan hubungi kami di legal@golobe.com"
+    }
+  },
+  "common": {
+    "back": "Kembali",
+    "loading": "Memuat...",
+    "searchCity": "Cari kota...",
+    "noCitiesFound": "Tidak ada kota ditemukan",
+    "selectCity": "Pilih kota",
+    "city": "Kota",
+    "airportName": "Nama Bandara",
+    "reviews": "ulasan",
+    "startingFrom": "Mulai dari",
+    "viewDeals": "Lihat Penawaran",
+    "date": "Tanggal",
+    "type": "Tipe",
+    "included": "Termasuk",
+    "verifiedCustomer": "Pelanggan Terverifikasi",
+    "pleaseWait": "Mohon tunggu",
+    "loadingReviews": "Memuat ulasan...",
+    "departureDate": "Tanggal Keberangkatan",
+    "noFareDetails": "Tidak ada rincian biaya tersedia"
+  },
+  "ctaCards": {
+    "flightsTitle": "Penerbangan",
+    "flightsDescription": "Cari Penerbangan & Tempat Menyewa ke destinasi paling populer kami"
+  },
+  "stats": {
+    "averageRating": "Rating Rata-rata",
+    "satisfiedCustomers": "Pelanggan Puas",
+    "satisfactionRate": "Tingkat Kepuasan",
+    "fiveStarReviews": "Ulasan Bintang 5"
+  }
+}
